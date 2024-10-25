@@ -1,5 +1,6 @@
 #  Rag simples usando pdf como base
-A aplicação usa o modelo de llm (local) ollama mistral 
+A aplicação usa o modelo de llm (local) ollama mistral.
+Utilizei as libs do langchain pra carregar o pdf, e splitar ele em paginas e chunks e armazenar em ids de padrão "data/arquivo.pdf: pagina : chunk"
 
 
 
@@ -32,7 +33,7 @@ venv\Scripts\activate #windows
 
     ```ollama pull mistral```
 
-- execute o modelo:
+- Execute o modelo:
 
     ```ollama run mistral```
 ------------------------------------------------------------------------------
@@ -41,13 +42,13 @@ venv\Scripts\activate #windows
 
 ```streamlit run query_data.py```
 
-## relativo ao db
+## Relativo ao db
 
-Pra alimentar o db, basta colocar algum arquivo pdf na pasta 'DATA', localizada na raiz, e rodar o populate_database.py com: 
+Para alimentar o db, basta colocar algum arquivo .pdf na pasta 'DATA', localizada na raiz, e rodar o populate_database.py com: 
 
 ```python populate_database.py```
 
-Pra limpar as informações do db, basta rodar o código acima com a flag --reset.
+Para limpar as informações do db, basta rodar o código acima com a flag --reset.
 
 
 
