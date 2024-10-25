@@ -17,7 +17,7 @@ DATA_PATH = "data"
 
 def main():
 
-    # Check if the database should be cleared (using the --clear flag).
+    # verifica se o db precisa ser limpo -----> flag: --clear
     parser = argparse.ArgumentParser()
     parser.add_argument("--reset", action="store_true", help="Reset the database.")
     args = parser.parse_args()
@@ -25,7 +25,7 @@ def main():
         print("Limpando db...")
         clear_database()
 
-    # Create (or update) the data store.
+    # cria ou atualiza o db
     documents = load_documents()
     chunks = split_documents(documents)
     add_to_chroma(chunks)
@@ -47,20 +47,21 @@ def split_documents(documents: list[Document]):
 
 
 def add_to_chroma(chunks: list[Document]):
-    # Load the existing database.
+    # carregar o db
     db = Chroma(
         persist_directory=CHROMA_PATH, embedding_function=get_embedding_function()
     )
 
-    # Calculate Page IDs.
+    # calcular os IDs dos chunks
     chunks_with_ids = calculate_chunk_ids(chunks)
 
-    # Add or Update the documents.
-    existing_items = db.get(include=[])  # IDs are always included by default
+    # adicionar ou dar update no db ( 
+
+    existing_items = db.get(include=[])  
     existing_ids = set(existing_items["ids"])
     print(f"Numero de documentos no DB: {len(existing_ids)}")
 
-    # Only add documents that don't exist in the DB.
+    # para nao adicionar documentos iguais
     new_chunks = []
     for chunk in chunks_with_ids:
         if chunk.metadata["id"] not in existing_ids:
@@ -77,7 +78,7 @@ def add_to_chroma(chunks: list[Document]):
 
 def calculate_chunk_ids(chunks):
 
-    # This will create IDs like "data/monopoly.pdf:6:2"
+    # o id vai ser no padrão "data/monopoly.pdf:6:2"
     # Page Source : Page Number : Chunk Index
 
     last_page_id = None
@@ -88,17 +89,18 @@ def calculate_chunk_ids(chunks):
         page = chunk.metadata.get("page")
         current_page_id = f"{source}:{page}"
 
-        # If the page ID is the same as the last one, increment the index.
+
+        #se o id da pagina for o mesmo que o ultimo, incrementa o index
         if current_page_id == last_page_id:
             current_chunk_index += 1
         else:
             current_chunk_index = 0
 
-        # Calculate the chunk ID.
+        # calcula o id do chunk
         chunk_id = f"{current_page_id}:{current_chunk_index}"
         last_page_id = current_page_id
 
-        # Add it to the page meta-data.
+        # adiciona pro page metadata
         chunk.metadata["id"] = chunk_id
 
     return chunks
