@@ -2,6 +2,11 @@
 A aplicação usa o modelo de llm (local) ollama mistral.
 Utilizei as libs do langchain pra carregar o pdf, e splitar ele em paginas e chunks e armazenar em ids de padrão "data/arquivo.pdf: pagina : chunk"
 
+Print da interface do streamlit ---> resposta gerada com base no pdf + fonte de consulta (id)
+<img width="1709" alt="image" src="https://github.com/user-attachments/assets/7ba2b21a-0754-46d8-a490-acece1625cc8">
+
+
+
 
 
 ## Como rodar
