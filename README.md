@@ -4,6 +4,7 @@ A aplicação usa o modelo de llm (local) ollama mistral
 
 
 ## Como rodar
+
 1. Crie um ambiente virtual:
 ```python -m venv venv```
 
@@ -13,10 +14,12 @@ source venv/bin/activate #mac
 venv\Scripts\activate #windows
 ```
 
-3. Instale as dependencias (localizadas em requirements.txt) com: 
+3. Instale as dependencias (localizadas em requirements.txt) com:
 
 ```pip install -r requirements.txt```
+
 4. Processo de instalação e setup do ollama (caso não tenha):
+   
 ------------------------------------------------------------------------------
 
 
