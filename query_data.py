@@ -7,21 +7,21 @@ from get_embedding_function import get_embedding_function
 CHROMA_PATH = "chroma"
 
 PROMPT_TEMPLATE = """ 
-Answer the question based only on the following context:
+Responda a pergunta com base no contexto abaixo:
 
 {context}
 
 ---
 
-Answer the question based on the above context: {question}
+pergunta: {question}
 """
 
 def query_rag(query_text: str):
-    # Prepare the DB.
+    #prepara as partes do db
     embedding_function = get_embedding_function()
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
 
-    # Search the DB.
+    # procura no db
     results = db.similarity_search_with_score(query_text, k=5)
 
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
@@ -32,19 +32,19 @@ def query_rag(query_text: str):
     response_text = model.invoke(prompt)
 
     sources = [doc.metadata.get("id", None) for doc, _score in results]
-    formatted_response = f"Response: {response_text}\nSources: {sources}"
+    formatted_response = f"Resposta: \n\n{response_text}\n\FONTES: {sources}"
     return formatted_response
 
 def main():
-    st.title("Query RAG Application")  # Título da aplicação
-    query_text = st.text_input("Enter your query:")  # Campo de entrada para a consulta
+    st.title("Query RAG app")  
+    query_text = st.text_input("Digite sua pergunta:")  
 
-    if st.button("Submit"):  # Botão para submeter a consulta
+    if st.button("Enviar"): 
         if query_text:
-            response = query_rag(query_text)  # Chama a função para processar a consulta
-            st.write(response)  # Exibe a resposta na interface do Streamlit
+            response = query_rag(query_text)  
+            st.write(response)  
         else:
-            st.warning("Please enter a query.")  # Mensagem de aviso se o campo estiver vazio
+            st.warning("Por favor, digite uma pergunta")  
 
 if __name__ == "__main__":
     main()
