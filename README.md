@@ -14,9 +14,9 @@ Print da interface do streamlit ---> resposta gerada com base no pdf + fonte de 
 1. Crie um ambiente virtual:
 ```python -m venv venv```
 
-2. Ativei ele com:
+2. Ative ele com:
 ```
-source venv/bin/activate #mac
+source venv/bin/activate #macos
 venv\Scripts\activate #windows
 ```
 
