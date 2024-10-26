@@ -1,5 +1,5 @@
 #  Rag simples usando pdf como base
-A aplicação usa o modelo de llm (local) ollama mistral.
+A aplicação usa o modelo de llm (local) ollama [mistral](https://ollama.com/library/mistral)
 Utilizei as libs do langchain pra carregar o pdf, e splitar ele em paginas e chunks e armazenar em ids de padrão "data/arquivo.pdf: pagina : chunk"
 
 Print da interface do streamlit ---> resposta gerada com base no pdf + fonte de consulta (id)
