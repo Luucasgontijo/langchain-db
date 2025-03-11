@@ -1,4 +1,4 @@
-Implementação de RAG utilizando PDF como fonte de dados.
+#Implementação de RAG utilizando PDF como fonte de dados.
 
 A aplicação usa o modelo de llm (local) ollama [mistral](https://ollama.com/library/mistral)
 
