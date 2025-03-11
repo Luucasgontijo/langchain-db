@@ -1,4 +1,5 @@
-#  Rag simples usando pdf como base
+Implementação de RAG utilizando PDF como fonte de dados.
+
 A aplicação usa o modelo de llm (local) ollama [mistral](https://ollama.com/library/mistral)
 
 Utilizei as libs do langchain pra carregar o pdf, e splitar ele em paginas e chunks e armazenar em ids de padrão "data/arquivo.pdf: pagina : chunk"
